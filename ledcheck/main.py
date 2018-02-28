@@ -15,7 +15,7 @@ class LightTester():
     '''The display board is of size SxS
     Every value is set to 0 originally, representing off'''
     def __init__(self, S):
-        self.array = [[0 for x in range (S)] for y in range (S)]
+        self.grid = [[0 for x in range (S)] for y in range (S)]
         self.size = S
         
     def boundaries(self):
