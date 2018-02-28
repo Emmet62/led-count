@@ -23,10 +23,10 @@ class LightTester():
         then it will still be executed, but only on the region of lights inside the boundary of the grid'''
         if start[0] < 0:
             start[0] = 0
-        if start[1] < 0:
-            start[1] = 0
-        if stop[0] >= self.size:
-            stop[0] = (self.size - 1)
+        if start[1] >= self.size:
+            start[1] = (self.size - 1)
+        if stop[0] < 0:
+            stop[0] = 0
         if stop[1] >= self.size:
             stop[1] = (self.size - 1)
         return start, stop
