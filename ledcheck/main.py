@@ -5,7 +5,7 @@ Created on 27 Feb 2018
 '''
 
 import sys
-import requests
+import urllib.request
 
 ''' Create a class for the LightTester'''
 class LightTester():
@@ -14,9 +14,6 @@ class LightTester():
     def __init__(self):
         pass
         
-    def file_format(self):
-        pass
-    
     def boundaries(self):
         pass
     
@@ -32,13 +29,11 @@ class LightTester():
 def file_existence(file):
     ''' Checks that the input file exists (local file or network address)'''
     if file.startswith('http://'):
-        response = requests.get(file)
+        request = urllib.request.urlopen(file)
+        response = request.read().decode('utf-8') #.read() is used to convert output to string
     else:
-        response = open(file, 'r')
+        response = open(file, 'r').read() #.read() is used to convert output to string
     return response
-
-def read_file():
-    pass
 
 def main():
     pass
