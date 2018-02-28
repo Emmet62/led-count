@@ -6,6 +6,7 @@ Created on 27 Feb 2018
 
 import sys
 import urllib.request
+import re
 
 ''' Create a class for the LightTester'''
 class LightTester():
@@ -27,13 +28,19 @@ class LightTester():
         pass
 
 def file_existence(file):
-    ''' Checks that the input file exists (local file or network address)'''
+    ''' Reads the input file (local file or network address) and converts contents to a string'''
     if file.startswith('http://'):
         request = urllib.request.urlopen(file)
         response = request.read().decode('utf-8') #.read() is used to convert output to string
     else:
         response = open(file, 'r').read() #.read() is used to convert output to string
     return response
+
+def file_clean(file):
+    ''' Use the string we string from file_existence to check that any commands other then "turn on", "turn off", and "toggle" are ignored'''
+    str = file_existence(file)
+    cleaned = re.findall(r".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*", str)
+    return cleaned
 
 def main():
     pass
