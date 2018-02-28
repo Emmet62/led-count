@@ -8,12 +8,15 @@ import sys
 import urllib.request
 import re
 
-''' Create a class for the LightTester'''
 class LightTester():
+    ''' Create a class for the LightTester'''
     lights = None
     
-    def __init__(self):
-        pass
+    '''The display board is of size SxS
+    Every value is set to 0 originally, representing off'''
+    def __init__(self, S):
+        self.array = [[0 for x in range (S)] for y in range (S)]
+        self.size = S
         
     def boundaries(self):
         pass
@@ -37,10 +40,10 @@ def file_existence(file):
     return response
 
 def file_clean(file):
-    ''' Use the string we string from file_existence to check that any commands other then "turn on", "turn off", and "toggle" are ignored'''
+    ''' Use the string we return from file_existence to check that any commands that are not "turn on", "turn off", and "toggle" are ignored'''
     str = file_existence(file)
     cleaned = re.findall(r".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*", str)
-    return cleaned
+    return cleaned    
 
 def main():
     pass
