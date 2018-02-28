@@ -12,14 +12,24 @@ class LightTester():
     ''' Create a class for the LightTester'''
     lights = None
     
-    '''The display board is of size SxS
-    Every value is set to 0 originally, representing off'''
     def __init__(self, S):
+        '''The display board is of size SxS
+        Every value is set to 0 originally, representing off'''
         self.grid = [[0 for x in range (S)] for y in range (S)]
         self.size = S
         
-    def boundaries(self):
-        pass
+    def boundaries(self, start, stop):
+        ''' If a command affects a region outside the area of the grid, 
+        then it will still be executed, but only on the region of lights inside the boundary of the grid'''
+        if start[0] < 0:
+            start[0] = 0
+        if start[1] < 0:
+            start[1] = 0
+        if stop[0] >= self.size:
+            stop[0] = (self.size - 1)
+        if stop[1] >= self.size:
+            stop[1] = (self.size - 1)
+        return start, stop
     
     def turn_on(self):
         pass
