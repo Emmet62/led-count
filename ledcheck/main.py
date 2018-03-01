@@ -23,10 +23,10 @@ class LightTester():
         then it will still be executed, but only on the region of lights inside the boundary of the grid'''
         if start[0] < 0:
             start[0] = 0
-        if start[1] >= self.size:
-            start[1] = (self.size - 1)
-        if stop[0] < 0:
-            stop[0] = 0
+        if start[1] < 0:
+            start[1] = 0
+        if stop[0] >= self.size:
+            stop[0] = (self.size - 1)
         if stop[1] >= self.size:
             stop[1] = (self.size - 1)
         return start, stop
@@ -84,11 +84,12 @@ def main():
     if len(sys.argv) > 30:
         print('Error: No input file provided')
     else:
-        link = ('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt')
+        link = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt'
         file = file_existence(link)
         gridSize = int(file.split("\n")[0])
         cleanFile = re.findall(r".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*", file)
         commandNumber = len(cleanFile)
+        print(commandNumber)
         grid = LightTester(gridSize)
         
         for i in range (0, commandNumber):
