@@ -81,10 +81,34 @@ def file_clean(file):
     cleaned = re.findall(r".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*", str)
     return cleaned    
 
+sample = (file_clean('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt')[1])
+startFirst = int(sample[1])
+startLast = int(sample[2])
+stopFirst = int(sample[3])
+stopLast = int(sample[4])
+print(sample)
+print(startFirst)
+print(startLast)
+print(stopFirst)
+print(stopLast)
+coord = [startFirst, startLast]
+print(coord)
+
 def main():
     if len(sys.argv) < 3:
         print('Error: No input file provided')
-    
+    else:
+        instruction = sys.argv[2]
+        instructionString = file_existence(instruction)
+        gridSize = int(instructionString.split('\n')[0])
+        instructionClean = file_clean(instructionString)
+        grid = LightTester(gridSize)
+        
+        for i in range (0, gridSize):
+            
+            if instructionClean[i][0] == 'turn on':
+                pass 
+            
 
 if __name__ == '__main__':
     main()
