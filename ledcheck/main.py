@@ -72,13 +72,7 @@ def file_existence(file):
         response = request.read().decode('utf-8') #.read() is used to convert output to string
     else:
         response = open(file, 'r').read() #.read() is used to convert output to string
-    return response
-
-def file_clean(file):
-    ''' Use the string we return from file_existence to check that any commands that are not "turn on", "turn off", and "toggle" are ignored'''
-    str = file_existence(file)
-    cleaned = re.findall(r".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*", str)
-    return cleaned    
+    return response 
 
 def get_coord(string):
     First = int(string[0])
@@ -87,25 +81,26 @@ def get_coord(string):
     return coord
 
 def main():
-    if len(sys.argv) < 3:
+    if len(sys.argv) > 30:
         print('Error: No input file provided')
     else:
-        instruction = sys.argv[2]
-        instructionString = file_existence(instruction)
-        gridSize = int(instructionString.split('\n')[0])
-        instructionClean = file_clean(instructionString)
+        link = ('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt')
+        file = file_existence(link)
+        gridSize = int(file.split("\n")[0])
+        cleanFile = re.findall(r".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*", file)
+        commandNumber = len(cleanFile)
         grid = LightTester(gridSize)
         
-        for i in range (0, gridSize):
-            start = get_coord(instructionClean[i][1:3])
-            stop = get_coord(instructionClean[i][3:])
+        for i in range (0, commandNumber):
+            start = get_coord(cleanFile[i][1:3])
+            stop = get_coord(cleanFile[i][3:])
             boundedStart, boundedStop = grid.boundaries(start, stop)
             
-            if instructionClean[i][0] == 'turn on':
+            if cleanFile[i][0] == 'turn on':
                 grid.turn_on(boundedStart, boundedStop)
-            elif instructionClean[i][0] == 'turn off':
+            elif cleanFile[i][0] == 'turn off':
                 grid.turn_off(boundedStart, boundedStop)
-            elif instructionClean[i][0] == 'switch':
+            elif cleanFile[i][0] == 'switch':
                 grid.toggle(boundedStart, boundedStop)
             
         print(grid.count(gridSize))
