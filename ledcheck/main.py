@@ -40,7 +40,12 @@ class LightTester():
                     self.grid[i][j] = 1
     
     def turn_off(self):
-        pass
+        ''' Method that runs from start to stop points, switching lights off
+        On is represented by the number 0'''
+        if start[0] <= stop[0] and start[1] <= stop[1]:
+            for i in range (start[0], (stop[0] + 1)):
+                for j in range (start[1], (stop[1] + 1)):
+                    self.grid[i][j] = 0            
     
     def toggle(self):
         pass
