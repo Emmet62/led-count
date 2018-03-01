@@ -33,6 +33,8 @@ setup(
     keywords='',
     packages=find_packages(exclude=['docs', 'tests*']),
     include_package_data=True,
+    entry_points={
+        'console_scripts':['ledcheck=ledcheck.main:main']},
     author='Emmet Tracey',
     install_requires=install_requires,
     dependency_links=dependency_links,

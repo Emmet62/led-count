@@ -82,7 +82,9 @@ def file_clean(file):
     return cleaned    
 
 def main():
-    pass
+    if len(sys.argv) < 3:
+        print('Error: No input file provided')
+    
 
 if __name__ == '__main__':
     main()
