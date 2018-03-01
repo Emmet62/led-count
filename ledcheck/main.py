@@ -89,7 +89,8 @@ def main():
         gridSize = int(file.split("\n")[0])
         cleanFile = re.findall(r".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*", file)
         commandNumber = len(cleanFile)
-        print(commandNumber)
+        print("Grid size:", gridSize)
+        print("No. of commands:", commandNumber)
         grid = LightTester(gridSize)
         
         for i in range (0, commandNumber):
@@ -104,7 +105,7 @@ def main():
             elif cleanFile[i][0] == 'switch':
                 grid.toggle(boundedStart, boundedStop)
             
-        print(grid.count(gridSize))
+        print("No. of lights on:", grid.count(gridSize))
 
 if __name__ == '__main__':
     main()
