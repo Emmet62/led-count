@@ -47,7 +47,15 @@ class LightTester():
                 for j in range (start[1], (stop[1] + 1)):
                     self.grid[i][j] = 0            
     
-    def toggle(self):
+    def toggle(self, start, stop):
+        ''' Method that runs from start to stop points, switching lights from on to off or off to on'''
+        if start[0] <= stop[0] and start[1] <= stop[1]:
+            for i in range (start[0], (stop[0] + 1)):
+                for j in range (start[1], (stop[1] + 1)):
+                    if self.grid[i][j] == 0:
+                        self.grid[i][j] = 1
+                    elif self.grid[i][j] == 1:
+                        self.grid[i][j] = 0                
         pass
 
 def file_existence(file):

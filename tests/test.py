@@ -44,4 +44,14 @@ def test_turn_off():
     assert lights_on == 8
 
 def test_toggle():
-    pass
+    ''' Checks that the toggle method works'''
+    test_grid = LightTester(10)
+    test_grid.turn_on([0, 0], [2, 3])
+    test_grid.toggle([0, 0], [4, 4])
+    lights_on = 0
+    for i in range (0, 10):
+        for j in range (0, 10):
+            if test_grid.grid[i][j] == 1:
+                lights_on += 1
+    assert lights_on == 13
+    
