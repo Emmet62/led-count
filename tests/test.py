@@ -55,3 +55,16 @@ def test_toggle():
                 lights_on += 1
     assert lights_on == 13
     
+def count():
+    ''' Checks that the count method works'''
+    test_grid = LightTester(10)
+    test_grid.turn_on([0, 0], [2, 3])
+    test_grid.turn_off([1, 1], [2, 2])
+    test_grid.toggle([0, 0], [4, 4])
+    lights_on = 0
+    for i in range (0, 10):
+        for j in range (0, 10):
+            if test_grid.grid[i][j] == 1:
+                lights_on += 1
+    assert lights_on == 17
+    

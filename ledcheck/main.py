@@ -7,6 +7,7 @@ Created on 27 Feb 2018
 import sys
 import urllib.request
 import re
+from tkinter import Grid
 
 class LightTester():
     ''' Create a class for the LightTester'''
@@ -56,7 +57,12 @@ class LightTester():
                         self.grid[i][j] = 1
                     elif self.grid[i][j] == 1:
                         self.grid[i][j] = 0                
-        pass
+                        
+    def count(self, gridSize):
+        lights_on = 0
+        for i in range (gridSize):
+            for j in range (gridSize):
+                if
 
 def file_existence(file):
     ''' Reads the input file (local file or network address) and converts contents to a string'''
