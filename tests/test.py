@@ -18,10 +18,18 @@ def test_boundaries():
     If they aren't, they should be changed'''
     test_grid = LightTester(1000)
     test_coordinates = test_grid.boundaries([0, 1099], [-2, 230])
-    assert test_coordinates == ([0, 999],[0, 230])
+    assert test_coordinates == ([0, 999], [0, 230])
 
 def test_turn_on():
-    pass
+    ''' Checks that the turn_on method works'''
+    test_grid = LightTester(10)
+    test_grid.turn_on([0, 0], [2, 3])
+    lights_on = 0
+    for i in range(0, 3):
+        for j in range(0, 4):
+            if test_grid.grid[i][j] == 1:
+                lights_on += 1
+    assert lights_on == 12
 
 def test_turn_off():
     pass
