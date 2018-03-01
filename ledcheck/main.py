@@ -31,8 +31,13 @@ class LightTester():
             stop[1] = (self.size - 1)
         return start, stop
     
-    def turn_on(self):
-        pass
+    def turn_on(self, start, stop):
+        ''' Method that runs from start to stop points, switching lights on
+        On is represented by the number 1'''
+        if start[0] <= stop[0] and start[1] <= stop[1]:
+            for i in range (start[0], (end[0] + 1)):
+                for j in range (start[1], (end[1] + 1)):
+                    self.grid[i][j] = 1
     
     def turn_off(self):
         pass
