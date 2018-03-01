@@ -25,8 +25,8 @@ def test_turn_on():
     test_grid = LightTester(10)
     test_grid.turn_on([0, 0], [2, 3])
     lights_on = 0
-    for i in range (0, 3):
-        for j in range (0, 4):
+    for i in range (0, 10):
+        for j in range (0, 10):
             if test_grid.grid[i][j] == 1:
                 lights_on += 1
     assert lights_on == 12
@@ -37,11 +37,11 @@ def test_turn_off():
     test_grid.turn_on([0, 0], [2, 3])
     test_grid.turn_off([1, 1], [2, 2])
     lights_on = 0
-    for i in range (1, 3):
-        for j in range (1, 3):
+    for i in range (0, 10):
+        for j in range (0, 10):
             if test_grid.grid[i][j] == 1:
                 lights_on += 1
-    assert lights_on == 4
+    assert lights_on == 8
 
 def test_toggle():
     pass
