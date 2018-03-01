@@ -7,7 +7,6 @@ Created on 27 Feb 2018
 import sys
 import urllib.request
 import re
-from tkinter import Grid
 
 class LightTester():
     ''' Create a class for the LightTester'''
@@ -87,23 +86,6 @@ def get_coord(string):
     coord = [First, Last]
     return coord
 
-sample = (file_clean('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt')[0][1:3])
-sample2 = (file_clean('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt')[0][3:])
-print(get_coord(sample))
-print(get_coord(sample2))
-
-startFirst = int(sample[1])
-startLast = int(sample[2])
-stopFirst = int(sample[3])
-stopLast = int(sample[4])
-print(sample)
-print(startFirst)
-print(startLast)
-print(stopFirst)
-print(stopLast)
-coord = [startFirst, startLast]
-print(coord)
-
 def main():
     if len(sys.argv) < 3:
         print('Error: No input file provided')
@@ -117,10 +99,16 @@ def main():
         for i in range (0, gridSize):
             start = get_coord(instructionClean[i][1:3])
             stop = get_coord(instructionClean[i][3:])
+            boundedStart, boundedStop = grid.boundaries(start, stop)
             
             if instructionClean[i][0] == 'turn on':
-                pass 
+                grid.turn_on(boundedStart, boundedStop)
+            elif instructionClean[i][0] == 'turn off':
+                grid.turn_off(boundedStart, boundedStop)
+            elif instructionClean[i][0] == 'switch':
+                grid.toggle(boundedStart, boundedStop)
             
+        print(grid.count(gridSize))
 
 if __name__ == '__main__':
     main()
