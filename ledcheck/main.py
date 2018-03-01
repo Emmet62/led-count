@@ -81,16 +81,16 @@ def get_coord(string):
     return coord
 
 def main():
-    if len(sys.argv) > 30:
+    if len(sys.argv) < 3:
         print('Error: No input file provided')
     else:
-        link = 'http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3_c.txt'
+        link = sys.argv[2]
         file = file_existence(link)
         gridSize = int(file.split("\n")[0])
         cleanFile = re.findall(r".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*", file)
         commandNumber = len(cleanFile)
-        print("Grid size:", gridSize)
-        print("No. of commands:", commandNumber)
+        print("Grid Size:", gridSize)
+        print("No. of Commands:", commandNumber)
         grid = LightTester(gridSize)
         
         for i in range (0, commandNumber):
@@ -105,7 +105,7 @@ def main():
             elif cleanFile[i][0] == 'switch':
                 grid.toggle(boundedStart, boundedStop)
             
-        print("No. of lights on:", grid.count(gridSize))
+        print("No. of Lights On:", grid.count(gridSize))
 
 if __name__ == '__main__':
     main()
