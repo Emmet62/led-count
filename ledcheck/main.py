@@ -81,7 +81,17 @@ def file_clean(file):
     cleaned = re.findall(r".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*", str)
     return cleaned    
 
-sample = (file_clean('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt')[1])
+def get_coord(string):
+    First = int(string[0])
+    Last = int(string[1])
+    coord = [First, Last]
+    return coord
+
+sample = (file_clean('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt')[0][1:3])
+sample2 = (file_clean('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt')[0][3:])
+print(get_coord(sample))
+print(get_coord(sample2))
+
 startFirst = int(sample[1])
 startLast = int(sample[2])
 stopFirst = int(sample[3])
@@ -105,6 +115,8 @@ def main():
         grid = LightTester(gridSize)
         
         for i in range (0, gridSize):
+            start = get_coord(instructionClean[i][1:3])
+            stop = get_coord(instructionClean[i][3:])
             
             if instructionClean[i][0] == 'turn on':
                 pass 
