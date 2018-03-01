@@ -60,9 +60,11 @@ class LightTester():
                         
     def count(self, gridSize):
         lights_on = 0
-        for i in range (gridSize):
-            for j in range (gridSize):
-                if
+        for i in range (0, gridSize):
+            for j in range (0, gridSize):
+                if self.grid[i][j] == 1:
+                    lights_on += 1
+        return lights_on
 
 def file_existence(file):
     ''' Reads the input file (local file or network address) and converts contents to a string'''
