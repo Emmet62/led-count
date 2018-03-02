@@ -9,7 +9,7 @@ Overview
 
 Counts the number of LED lights that are on
 
-Installation / Usage
+Installation 
 --------------------
 
 To install use pip:
@@ -22,12 +22,11 @@ Or clone the repo:
     $ git clone https://github.com/Emmet62/ledcheck.git
     $ python setup.py install
     
-Contributing
+Usage
 ------------
 
-TBD
-
-Example
--------
-
-TBD
+To use please enter the following command:
+    
+    $ ledcheck --input 'file_link'
+    
+file_link can be either a local saved file or a network address
